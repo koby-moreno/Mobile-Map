@@ -2,7 +2,7 @@
 
 // const {DeckGL, GeoJsonLayer, ArcLayer} = MapboxOverlay;
 
-const {DeckGL, GeoJsonLayer, ArcLayer} = deck;
+const {DeckGL, GeoJsonLayer, ArcLayer, PolygonLayer} = deck;
 
 
 // import mapboxgl from 'mapbox-gl';
@@ -34,52 +34,72 @@ const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm9
 //   pitch: 30
 // });
 
-const isMobile = navigator.userAgentData.mobile;
+
+let parcelsFill = function(d){
+    let opacity = 255;
+    if (d.properties.Parcles_CS == "FALSE"){
+        opacity = 0;
+    }
+    return [160, 140, 0, opacity];
+}
+
 
 const deckOverlay = new DeckGL({
     // interleaved: true,
-    _pickable: false,
+   
     // _typedArrayManagerProps: isMobile ? {overAlloc: 1, poolSize: 0} : null,
 
     mapboxApiAccessToken: MAPBOX_TOKEN,
     mapStyle: 'mapbox://styles/mapbox/light-v9',
     initialViewState: {
-        longitude: -122.45,
-        latitude: 37.8,
+        longitude: -90.1994,
+        latitude: 38.627003,
       zoom: 15
     },
     controller: true,
 
 
+
     layers: [
-      new GeoJsonLayer({
-        id: 'airports',
-        data: AIR_PORTS,
-        // Styles
-        filled: true,
-        pointRadiusMinPixels: 2,
-        pointRadiusScale: 2000,
-        getPointRadius: f => 11 - f.properties.scalerank,
-        getFillColor: [200, 0, 80, 180],
-        // Interactive props
-        pickable: true,
-        autoHighlight: true,
-        onClick: info =>
-          // eslint-disable-next-line
-          info.object && alert(`${info.object.properties.name} (${info.object.properties.abbrev})`)
-        // beforeId: 'waterway-label' // In interleaved mode render the layer under map labels
-      }),
-      new ArcLayer({
-        id: 'arcs',
-        data: AIR_PORTS,
-        dataTransform: d => d.features.filter(f => f.properties.scalerank < 4),
-        // Styles
-        getSourcePosition: f => [-0.4531566, 51.4709959], // London
-        getTargetPosition: f => f.geometry.coordinates,
-        getSourceColor: [0, 128, 200],
-        getTargetColor: [200, 0, 80],
-        getWidth: 1
-      })
+
+        new GeoJsonLayer({
+            id: 'PolygonLayer',
+            data: 'extent_small.json',
+            getPolygon: d => d.geometry,
+            getFillColor: d => parcelsFill(d),
+            getLineColor: [255, 255, 255],
+            getLineWidth: 1,
+            lineWidthMinPixels: 1,
+            pickable: true
+          }),
+    //   new GeoJsonLayer({
+    //     id: 'airports',
+    //     data: AIR_PORTS,
+    //     // Styles
+    //     filled: true,
+    //     pointRadiusMinPixels: 2,
+    //     pointRadiusScale: 2000,
+    //     getPointRadius: f => 11 - f.properties.scalerank,
+    //     getFillColor: [200, 0, 80, 180],
+    //     // Interactive props
+    //     pickable: true,
+    //     autoHighlight: true,
+    //     onClick: info =>
+    //       // eslint-disable-next-line
+    //       info.object && alert(`${info.object.properties.name} (${info.object.properties.abbrev})`)
+    //     // beforeId: 'waterway-label' // In interleaved mode render the layer under map labels
+    //   }),
+    //   new ArcLayer({
+    //     id: 'arcs',
+    //     data: AIR_PORTS,
+    //     dataTransform: d => d.features.filter(f => f.properties.scalerank < 4),
+    //     // Styles
+    //     getSourcePosition: f => [-0.4531566, 51.4709959], // London
+    //     getTargetPosition: f => f.geometry.coordinates,
+    //     getSourceColor: [0, 128, 200],
+    //     getTargetColor: [200, 0, 80],
+    //     getWidth: 1
+    //   })
     ]
   });
   
