@@ -1,5 +1,7 @@
-import {Deck} from '@deck.gl/core';
-import {GeoJsonLayer, ArcLayer} from '@deck.gl/layers';
+// import {Deck} from '@deck.gl/core';
+// import {GeoJsonLayer, ArcLayer} from '@deck.gl/layers';
+
+const {DeckGL, GeoJsonLayer, ArcLayer} = deck;
 
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const COUNTRIES =
@@ -15,7 +17,7 @@ const INITIAL_VIEW_STATE = {
   pitch: 30
 };
 
-new Deck({
+new DeckGL({
   initialViewState: INITIAL_VIEW_STATE,
   controller: true,
   layers: [
