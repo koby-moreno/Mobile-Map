@@ -34,6 +34,8 @@ const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm9
 //   pitch: 30
 // });
 
+const isMobile = navigator.userAgentData.mobile;
+
 const deckOverlay = new DeckGL({
     // interleaved: true,
     _pickable: false,
