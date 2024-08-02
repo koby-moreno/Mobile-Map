@@ -6,10 +6,13 @@
   <meta name="MobileOptimized" content="320" />
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width, user-scalable=no" />
 
-  
+
   <title>deck.gl Example</title>
   <script type="module" src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+
+  <link href="./output.css" rel="stylesheet">
+
 <script ype="module" src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
   <style>
     body {margin: 0; width: 100vw; height: 100vh; overflow: hidden;}
@@ -22,10 +25,18 @@
     }
   </style>
 </head>
-<body>
+<body class="z-auto">
     <div id="map"></div>
-    <div>
-        Koby Moreno was here
+    <div class="flex w-[100vw] h-[100vh] text-3xl font-bold underline z-10 relative pointer-events-none">
+        <div class="w-[50vw] bg-white h-[100vh] pointer-events-auto">
+
+        </div>
+        <div class="w-[50vw] h-[100vh] pointer-events-none flex justify-center items-center relative">
+            <div class="absolute h-[100vh] w-[25%] bg-gray-100 left-[0px]"></div>
+            <img class="absolute" src="IPhone_X.png">
+      
+
+        </div>
     </div>
 </body>
 <script type="module" src="app.js"></script>

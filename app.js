@@ -36,7 +36,7 @@ const parcelData = 'extentSmall.json';
 
 
 let parcelsFill = function(d){
-    let opacity = 255;
+    let opacity = 100;
     if (d.properties.Parcles_CS == "FALSE"){
         opacity = 0;
     }
