@@ -1,105 +1,44 @@
+const {DeckGL, GeoJsonLayer} = deck;
 
-
-// const {DeckGL, GeoJsonLayer, ArcLayer} = MapboxOverlay;
-
-const {DeckGL, GeoJsonLayer, ArcLayer, PolygonLayer} = deck;
-
-
-// import mapboxgl from 'mapbox-gl';
-// import 'mapbox-gl/dist/mapbox-gl.css';
-
-// source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
-const COUNTRIES =
-  'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_scale_rank.geojson'; //eslint-disable-line
-const AIR_PORTS =
-  'https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson';
-
-// const INITIAL_VIEW_STATE = {
-//   latitude: 51.47,
-//   longitude: 0.45,
-//   zoom: 4,
-//   bearing: 0,
-//   pitch: 30
-// };
-
-const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm92aHk4bzZrIn0.reIvwUnQYc9gCW4IClg1ww'
+const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm92aHk4bzZrIn0.reIvwUnQYc9gCW4IClg1ww';
 const parcelData = 'extentSmall.json';
-// const map = new mapboxgl.Map({
-//   container: 'map',
-//   style: 'mapbox://styles/mapbox/light-v9',
-//   accessToken: MAPBOX_TOKEN,
-//   center: [0.45, 51.47],
-//   zoom: 4,
-//   bearing: 0,
-//   pitch: 30
-// });
 
+let fillColor = [160, 140, 0, 100];
 
-let parcelsFill = function(d){
-    let opacity = 100;
-    if (d.properties.Parcles_CS == "FALSE"){
-        opacity = 0;
+function createGeoJsonLayer() {
+  return new deck.GeoJsonLayer({
+    id: 'geojson-layer',
+    data: parcelData,
+    getFillColor: d => fillColor,
+    getLineColor: [255, 255, 255],
+    getLineWidth: 1,
+    lineWidthMinPixels: 1,
+    pickable: true,
+    updateTriggers: {
+      getFillColor: fillColor
     }
-    return [160, 140, 0, opacity];
+  });
 }
 
+const deckOverlay = new deck.DeckGL({
+  mapboxApiAccessToken: MAPBOX_TOKEN,
+  mapStyle: 'mapbox://styles/mapbox/light-v9',
+  initialViewState: {
+    longitude: -90.1994,
+    latitude: 38.627003,
+    zoom: 15
+  },
+  controller: true,
+  layers: [createGeoJsonLayer()]
+});
 
-const deckOverlay = new DeckGL({
-    // interleaved: true,
-   
-    // _typedArrayManagerProps: isMobile ? {overAlloc: 1, poolSize: 0} : null,
+document.getElementById('control-panel').addEventListener("click", function () {
+  console.log("click");
+  // Update the fill color
+  fillColor = [0, 128, 0, 255]; // New fill color (green)
 
-    mapboxApiAccessToken: MAPBOX_TOKEN,
-    mapStyle: 'mapbox://styles/mapbox/light-v9',
-    initialViewState: {
-        longitude: -90.1994,
-        latitude: 38.627003,
-      zoom: 15
-    },
-    controller: true,
-
-
-
-    layers: [
-
-        new GeoJsonLayer({
-            data: parcelData,
-            getFillColor: d => parcelsFill(d),
-            getLineColor: [255, 255, 255],
-            getLineWidth: 1,
-            lineWidthMinPixels: 1,
-            pickable: true
-          }),
-    //   new GeoJsonLayer({
-    //     id: 'airports',
-    //     data: AIR_PORTS,
-    //     // Styles
-    //     filled: true,
-    //     pointRadiusMinPixels: 2,
-    //     pointRadiusScale: 2000,
-    //     getPointRadius: f => 11 - f.properties.scalerank,
-    //     getFillColor: [200, 0, 80, 180],
-    //     // Interactive props
-    //     pickable: true,
-    //     autoHighlight: true,
-    //     onClick: info =>
-    //       // eslint-disable-next-line
-    //       info.object && alert(`${info.object.properties.name} (${info.object.properties.abbrev})`)
-    //     // beforeId: 'waterway-label' // In interleaved mode render the layer under map labels
-    //   }),
-    //   new ArcLayer({
-    //     id: 'arcs',
-    //     data: AIR_PORTS,
-    //     dataTransform: d => d.features.filter(f => f.properties.scalerank < 4),
-    //     // Styles
-    //     getSourcePosition: f => [-0.4531566, 51.4709959], // London
-    //     getTargetPosition: f => f.geometry.coordinates,
-    //     getSourceColor: [0, 128, 200],
-    //     getTargetColor: [200, 0, 80],
-    //     getWidth: 1
-    //   })
-    ]
+  // Update the layer with the new fill color
+  deckOverlay.setProps({
+    layers: [createGeoJsonLayer()]
   });
-  
-//   map.addControl(deckOverlay);
-//   map.addControl(new mapboxgl.NavigationControl());
+});
