@@ -23,7 +23,7 @@ const AIR_PORTS =
 // };
 
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm92aHk4bzZrIn0.reIvwUnQYc9gCW4IClg1ww'
-
+const parcelData = 'extentSmall.json';
 // const map = new mapboxgl.Map({
 //   container: 'map',
 //   style: 'mapbox://styles/mapbox/light-v9',
@@ -63,9 +63,7 @@ const deckOverlay = new DeckGL({
     layers: [
 
         new GeoJsonLayer({
-            id: 'PolygonLayer',
-            data: 'extent_small.json',
-            getPolygon: d => d.geometry,
+            data: parcelData,
             getFillColor: d => parcelsFill(d),
             getLineColor: [255, 255, 255],
             getLineWidth: 1,
