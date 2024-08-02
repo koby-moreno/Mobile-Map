@@ -36,6 +36,8 @@ const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm9
 
 const deckOverlay = new DeckGL({
     // interleaved: true,
+    _pickable: false,
+    _typedArrayManagerProps: isMobile ? {overAlloc: 1, poolSize: 0} : null,
 
     mapboxApiAccessToken: MAPBOX_TOKEN,
     mapStyle: 'mapbox://styles/mapbox/light-v9',
