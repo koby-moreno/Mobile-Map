@@ -1,3 +1,3 @@
 export default {
-    base: '/<Mobile-Map>/'
+    base: '/Mobile-Map/'
   };
