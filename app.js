@@ -39,7 +39,7 @@ const isMobile = navigator.userAgentData.mobile;
 const deckOverlay = new DeckGL({
     // interleaved: true,
     _pickable: false,
-    _typedArrayManagerProps: isMobile ? {overAlloc: 1, poolSize: 0} : null,
+    // _typedArrayManagerProps: isMobile ? {overAlloc: 1, poolSize: 0} : null,
 
     mapboxApiAccessToken: MAPBOX_TOKEN,
     mapStyle: 'mapbox://styles/mapbox/light-v9',
