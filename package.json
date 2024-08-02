@@ -10,8 +10,8 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@deck.gl/core": "^9.0.24",
-        "@deck.gl/layers": "^9.0.0"
+        "@deck.gl/core": "^9.0.25",
+        "@deck.gl/layers": "^9.0.25"
     },
     "devDependencies": {
         "vite": "^4.0.0"

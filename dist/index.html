@@ -3,13 +3,26 @@
 <head>
   <meta charset="utf-8">
   <title>deck.gl Example</title>
-  <script src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+  <script type="module" src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
+<script ype="module" src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
   <style>
     body {margin: 0; width: 100vw; height: 100vh; overflow: hidden;}
+    #map {
+      position: fixed;
+      top: 0;
+      left: 100;
+      right: 0;
+      bottom: 0;
+    }
   </style>
-  <script type="module" crossorigin src="/Mobile-Map/assets/index-15c69f1f.js"></script>
+  <script type="module" crossorigin src="/Mobile-Map/assets/index-87c699ca.js"></script>
 </head>
 <body>
+    <div id="map"></div>
+    <div>
+        Koby Moreno was here
+    </div>
 </body>
 
 </html>
