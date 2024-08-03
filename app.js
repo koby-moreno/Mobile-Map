@@ -6,6 +6,9 @@ const fillSlider = document.getElementById("fill-slider");
 let sliderVal = 5;
 import jsonData from './extentSmall.json';
 
+let controlBtn = document.getElementById("control-panel-btn");
+let controlPanel = document.getElementById("control-panel");
+let panelState = false;
 
 
 let maxLandArea = -Infinity;
@@ -112,4 +115,15 @@ fillSlider.addEventListener("input", function () {
   deckOverlay.setProps({
     layers: [createGeoJsonLayer()]
   });
+});
+
+controlBtn.addEventListener("click", function () {
+    if (panelState == false){
+        controlPanel.style.top = "50vh";
+        panelState = true;
+    }
+    else {
+        controlPanel.style.top = "95vh";
+        panelState = false;
+    }
 });
