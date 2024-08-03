@@ -28,7 +28,7 @@ controlBtn.addEventListener("click", function () {
         controlPanel.style.top = "50vh";
         panelState = true;
     } else {
-        controlPanel.style.top = "85vh";
+        controlPanel.style.top = "80vh";
         panelState = false;
     }
 });

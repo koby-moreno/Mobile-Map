@@ -719,6 +719,10 @@ video {
   top: 85vh;
 }
 
+.top-\[80vh\] {
+  top: 80vh;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -2147,6 +2151,21 @@ video {
   padding-right: 1.25rem;
 }
 
+.py-\[24px\] {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.py-\[48px\] {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.py-\[60px\] {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2865,8 +2884,17 @@ canvas {
     width: 50vw;
   }
 
+  .sm\:items-center {
+    align-items: center;
+  }
+
   .sm\:rounded-none {
     border-radius: 0px;
+  }
+
+  .sm\:py-\[0px\] {
+    padding-top: 0px;
+    padding-bottom: 0px;
   }
 
   .sm\:underline {
