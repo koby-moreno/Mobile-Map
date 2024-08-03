@@ -8,12 +8,14 @@
 
 
   <title>deck.gl Example</title>
+  
   <script type="module" src="https://unpkg.com/deck.gl@latest/dist.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script ype="module" src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
 
   <link href="./output.css" rel="stylesheet">
 
-<script ype="module" src="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.js"></script>
   <style>
     body {margin: 0; width: 100vw; height: 100vh; overflow: hidden;}
     #map {
@@ -27,13 +29,29 @@
 </head>
 <body class="z-auto">
     <div id="map"></div>
-    <div class="flex w-[100vw] h-[100vh] text-3xl font-bold underline z-10 relative pointer-events-none">
-        <div class="w-[50vw] bg-white h-[100vh] pointer-events-auto" id="control-panel">
+    <div class="flex w-[100vw] h-[100vh] z-10 relative pointer-events-none">
+        <div class="w-[50vw] bg-white h-[100vh] pointer-events-auto flex justify-center items-center" id="control-panel">
+            <div class="flex flex-col gap-y-4 w-[300px]" id="controls">
+                <div class="flex flex-col gap-y-2">
+                    <div class="text-base">Min Parcel Opacity</div>
+                    <div class="slidecontainer">
+                        <input type="range" min="1" max="10" value="5" class="slider" id="fill-slider">
+                        <div class="flex justify-between w-[100%]" id="tick-container"></div>
+                        <div class="flex justify-between w-[100%]">
+                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-500">10</div>
+                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-500">100</div>
+                        </div>
+                    </div>
+                    <div id="fill-slider-val"></div>
+                </div>
+            </div>
+
 
         </div>
         <div class="w-[50vw] h-[100vh] pointer-events-none flex justify-center items-center relative">
-            <div class="absolute h-[100vh] w-[25%] bg-gray-100 left-[0px]"></div>
-            <img class="absolute" src="IPhone_X.png">
+            <div class="absolute h-[100vh] w-[calc(50%-180px)] bg-gray-100 left-[0px]"></div>
+            <div class="absolute h-[100vh] w-[calc(50%-180px)] bg-gray-100 right-[0px]"></div>
+            <img class="absolute w-[360px] h-[722px]" src="IPhone_X.png">
       
 
         </div>

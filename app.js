@@ -2,20 +2,76 @@ const {DeckGL, GeoJsonLayer} = deck;
 
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm92aHk4bzZrIn0.reIvwUnQYc9gCW4IClg1ww';
 const parcelData = 'extentSmall.json';
+const fillSlider = document.getElementById("fill-slider");
+let sliderVal = 5;
+import jsonData from './extentSmall.json';
 
-let fillColor = [160, 140, 0, 100];
+
+
+let maxLandArea = -Infinity;
+
+let tickContainer = document.getElementById("tick-container")
+
+for (let i = 0; i < 10; i++) {
+    const tick = document.createElement('template');
+tick.innerHTML = '<div class="h-[8px] w-[20px] flex justify-center"><div class="bg-gray-300 w-[1.5px] h-[100%]"></div></div>';
+    tickContainer.appendChild(tick.content);
+}
+
+// Loop through each feature in the JSON data
+jsonData.features.forEach((data) => {
+    // Convert the Parcles_CSV_LandArea property to a number
+    const landArea = parseFloat(data.properties.Parcles_CSV_LandArea);
+
+    // Check if the current land area is greater than the maxLandArea
+    if (landArea > maxLandArea) {
+        maxLandArea = landArea;
+    }
+});
+
+let opacityScale = d3.scaleLinear([0, maxLandArea], [(25*sliderVal), 255]);
+
+// Output the highest value of Parcles_CSV_LandArea
+console.log('Highest Parcles_CSV_LandArea:', maxLandArea);
+
+
+function fillColor(d){ 
+    let opacity = 0;
+
+    if (d.properties.Parcles_CS === "TRUE"){
+        //opacity = 255;
+
+        opacity = opacityScale(d.properties.Parcles_CSV_LandArea);
+
+    }
+
+    return [0, 120, 62, opacity];
+};
+
+
+
+var slider = document.getElementById("fill-slider");
+var output = document.getElementById("fill-slider-val");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+
+
 
 function createGeoJsonLayer() {
   return new deck.GeoJsonLayer({
     id: 'geojson-layer',
     data: parcelData,
-    getFillColor: d => fillColor,
+    getFillColor: d => fillColor(d),
     getLineColor: [255, 255, 255],
     getLineWidth: 1,
     lineWidthMinPixels: 1,
     pickable: true,
     updateTriggers: {
-      getFillColor: fillColor
+      getFillColor: d => fillColor(d)
     }
   });
 }
@@ -24,18 +80,28 @@ const deckOverlay = new deck.DeckGL({
   mapboxApiAccessToken: MAPBOX_TOKEN,
   mapStyle: 'mapbox://styles/mapbox/light-v9',
   initialViewState: {
-    longitude: -90.1994,
-    latitude: 38.627003,
+    longitude: -90.223526,
+    latitude: 38.649401,
     zoom: 15
   },
   controller: true,
   layers: [createGeoJsonLayer()]
 });
 
-document.getElementById('control-panel').addEventListener("click", function () {
-  console.log("click");
-  // Update the fill color
-  fillColor = [0, 128, 0, 255]; // New fill color (green)
+// document.getElementById('control-panel').addEventListener("click", function () {
+//   console.log("click");
+//   // Update the fill color
+//   fillColor = [0, 128, 0, 255]; // New fill color (green)
+
+//   // Update the layer with the new fill color
+//   deckOverlay.setProps({
+//     layers: [createGeoJsonLayer()]
+//   });
+// });
+
+fillSlider.addEventListener("input", function () {
+    sliderVal = fillSlider.value;
+    opacityScale = d3.scaleLinear([0, maxLandArea], [(25*sliderVal), 255]);
 
   // Update the layer with the new fill color
   deckOverlay.setProps({
