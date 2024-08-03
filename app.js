@@ -23,6 +23,16 @@ sliders.forEach((slider, i) => {
     }
 });
 
+controlBtn.addEventListener("click", function () {
+    if (panelState == false) {
+        controlPanel.style.top = "50vh";
+        panelState = true;
+    } else {
+        controlPanel.style.top = "85vh";
+        panelState = false;
+    }
+});
+
 function loadParcelData() {
     return fetch('./extentSmall.json')
         .then(response => response.json())
@@ -92,15 +102,6 @@ function loadParcelData() {
                 });
             });
 
-            controlBtn.addEventListener("click", function () {
-                if (panelState == false) {
-                    controlPanel.style.top = "50vh";
-                    panelState = true;
-                } else {
-                    controlPanel.style.top = "90vh";
-                    panelState = false;
-                }
-            });
         });
 }
 
