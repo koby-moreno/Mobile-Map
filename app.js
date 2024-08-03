@@ -97,7 +97,7 @@ function loadParcelData() {
                     controlPanel.style.top = "50vh";
                     panelState = true;
                 } else {
-                    controlPanel.style.top = "95vh";
+                    controlPanel.style.top = "90vh";
                     panelState = false;
                 }
             });
