@@ -10,13 +10,21 @@ import jsonData from './extentSmall.json';
 
 let maxLandArea = -Infinity;
 
-let tickContainer = document.getElementById("tick-container")
 
-for (let i = 0; i < 10; i++) {
-    const tick = document.createElement('template');
-tick.innerHTML = '<div class="h-[8px] w-[20px] flex justify-center"><div class="bg-gray-300 w-[1.5px] h-[100%]"></div></div>';
-    tickContainer.appendChild(tick.content);
-}
+let sliders = document.querySelectorAll('.slider');
+
+
+sliders.forEach((slider, i) => {
+    let tickContainer = slider.parentElement.querySelector('.tick-container');
+    let tickNums = slider.max;
+    for (let j = 0; j < tickNums; j++) {
+        const tick = document.createElement('template');
+    tick.innerHTML = '<div class="h-[8px] w-[20px] flex justify-center"><div class="bg-gray-300 w-[1.5px] h-[100%]"></div></div>';
+        tickContainer.appendChild(tick.content);
+    }
+});
+
+
 
 // Loop through each feature in the JSON data
 jsonData.features.forEach((data) => {
@@ -52,12 +60,9 @@ function fillColor(d){
 
 var slider = document.getElementById("fill-slider");
 var output = document.getElementById("fill-slider-val");
-output.innerHTML = slider.value; // Display the default slider value
 
 // Update the current slider value (each time you drag the slider handle)
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
+
 
 
 

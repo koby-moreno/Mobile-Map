@@ -699,6 +699,10 @@ video {
   right: 0px;
 }
 
+.top-\[90vh\] {
+  top: 90vh;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -892,6 +896,10 @@ video {
 
 .h-\[4px\] {
   height: 4px;
+}
+
+.h-\[70vh\] {
+  height: 70vh;
 }
 
 .w-\[100vw\] {
@@ -1488,6 +1496,10 @@ video {
   row-gap: 4rem;
 }
 
+.gap-y-6 {
+  row-gap: 1.5rem;
+}
+
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
@@ -1802,6 +1814,14 @@ video {
 
 .rounded {
   border-radius: 0.25rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-b {
@@ -2744,6 +2764,42 @@ canvas {
 }
 
 @media (min-width: 640px) {
+  .sm\:relative {
+    position: relative;
+  }
+
+  .sm\:top-auto {
+    top: auto;
+  }
+
+  .sm\:block {
+    display: block;
+  }
+
+  .sm\:inline-block {
+    display: inline-block;
+  }
+
+  .sm\:inline {
+    display: inline;
+  }
+
+  .sm\:flex {
+    display: flex;
+  }
+
+  .sm\:h-\[100vh\] {
+    height: 100vh;
+  }
+
+  .sm\:w-\[50vw\] {
+    width: 50vw;
+  }
+
+  .sm\:rounded-none {
+    border-radius: 0px;
+  }
+
   .sm\:underline {
     text-decoration-line: underline;
   }
