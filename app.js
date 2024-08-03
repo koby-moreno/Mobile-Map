@@ -1,11 +1,10 @@
 const {DeckGL, GeoJsonLayer} = deck;
 
 const MAPBOX_TOKEN = 'pk.eyJ1Ijoia29ieW1vcmVubyIsImEiOiJja2tqd3NmYmswOWc5Mm5tbm92aHk4bzZrIn0.reIvwUnQYc9gCW4IClg1ww';
-const parcelData = 'extentSmall.json';
+import parcelData from './extentSmall.json';
 const fillSlider = document.getElementById("fill-slider");
 let sliderVal = 5;
 
-// import jsonData from './extentSmall.json';
 
 let controlBtn = document.getElementById("control-panel-btn");
 let controlPanel = document.getElementById("control-panel");
@@ -30,18 +29,18 @@ sliders.forEach((slider, i) => {
 
 
 
-// // Loop through each feature in the JSON data
-// jsonData.features.forEach((data) => {
-//     // Convert the Parcles_CSV_LandArea property to a number
-//     const landArea = parseFloat(data.properties.Parcles_CSV_LandArea);
+// Loop through each feature in the JSON data
+parcelData.features.forEach((data) => {
+    // Convert the Parcles_CSV_LandArea property to a number
+    const landArea = parseFloat(data.properties.Parcles_CSV_LandArea);
 
-//     // Check if the current land area is greater than the maxLandArea
-//     if (landArea > maxLandArea) {
-//         maxLandArea = landArea;
-//     }
-// });
+    // Check if the current land area is greater than the maxLandArea
+    if (landArea > maxLandArea) {
+        maxLandArea = landArea;
+    }
+});
 
-let opacityScale = d3.scaleLinear([0, 67000], [(25*sliderVal), 255]);
+let opacityScale = d3.scaleLinear([0, maxLandArea], [(25*sliderVal), 255]);
 
 // Output the highest value of Parcles_CSV_LandArea
 console.log('Highest Parcles_CSV_LandArea:', maxLandArea);
@@ -110,7 +109,7 @@ const deckOverlay = new deck.DeckGL({
 
 fillSlider.addEventListener("input", function () {
     sliderVal = fillSlider.value;
-    opacityScale = d3.scaleLinear([0, 67000], [(25*sliderVal), 255]);
+    opacityScale = d3.scaleLinear([0, maxLandArea], [(25*sliderVal), 255]);
 
   // Update the layer with the new fill color
   deckOverlay.setProps({
