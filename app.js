@@ -16,14 +16,30 @@ let maxLandArea = -Infinity;
 let landAreas = [];
 let buckets = [];
 
+const setBarOpacity = function(sliderVal) {
+    let densityBars = document.querySelectorAll(".density-bar");
+    densityBars.forEach((bar, i) => {
+        bar.style.opacity = (i <= sliderVal) ? 1 : 0.2;
+    });
+};
+
+let pinSizeCont = document.querySelector('#pin-size-container');
+for (let i = 0; i < 6; i++){
+    const pin = document.createElement('template');
+    pin.innerHTML = `<div class="w-[18px] h-[24px] flex justify-center items-center"><span class="material-symbols-outlined text-green" style="font-size: ${8 * ((i+3)/3)}px;" >location_on</span></div>`
+    pinSizeCont.appendChild(pin.content);
+}
+
+
+
 let sliders = document.querySelectorAll('.slider');
 
 sliders.forEach((slider, i) => {
     let tickContainer = slider.parentElement.querySelector('.tick-container');
     let tickNums = slider.max;
-    for (let j = 0; j < tickNums; j++) {
+    for (let j = 0; j <= tickNums; j++) {
         const tick = document.createElement('template');
-        tick.innerHTML = '<div class="h-[8px] w-[20px] flex justify-center"><div class="bg-gray-300 w-[1.5px] h-[100%]"></div></div>';
+        tick.innerHTML = '<div class="h-[8px] w-[18px] flex justify-center"><div class="bg-gray-300 w-[1.5px] h-[100%]"></div></div>';
         tickContainer.appendChild(tick.content);
     }
 });
@@ -60,10 +76,10 @@ function loadParcelData() {
 
             maxLandArea = d3.max(landAreas);
             let opacityScale = d3.scalePow([0, maxLandArea], [(25.5 * sliderVal), 255]).exponent(0.75);
-            let histogram_scale = d3.scaleSqrt([0, maxLandArea], [0, 16]);
+            let histogram_scale = d3.scaleSqrt([0, maxLandArea], [0, 17]);
       
 
-            for (let b = 0; b <= 16; b++){
+            for (let b = 0; b <= 17; b++){
                 buckets.push([]);
             }
             
@@ -87,9 +103,12 @@ function loadParcelData() {
                 let yScale = d3.scaleSqrt([0, 106], [0, 24]);
                 let num = yScale(count);
                 console.log(num);
-                bar.innerHTML = `<div class="grow bg-gray-400" style="height: ${num}px;" id="bar-${i}"></div>`;
+                bar.innerHTML = `<div class="grow bg-green density-bar" style="height: ${num}px;" id="bar-${i}"></div>`;
                 densityChartCont.appendChild(bar.content);
             });
+
+            let densityVal = document.getElementById("density-slider").value;
+            setBarOpacity(densityVal);
 
             // Output the highest value of Parcles_CSV_LandArea
             console.log('Highest Parcles_CSV_LandArea:', maxLandArea);
@@ -144,6 +163,11 @@ function loadParcelData() {
                 deckOverlay.setProps({
                     layers: [createGeoJsonLayer()]
                 });
+            });
+
+            document.querySelector('#density-slider').addEventListener("input", function () {
+                densityVal = document.querySelector('#density-slider').value;
+                setBarOpacity(densityVal);
             });
 
         });

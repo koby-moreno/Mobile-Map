@@ -28,8 +28,8 @@ canvas {
     @apply bg-white ;
     -webkit-appearance: none; /* Override default look */
     appearance: none;
-    width: 20px; /* Set a specific slider handle width */
-    height: 20px; /* Slider handle height */
+    width: 18px; /* Set a specific slider handle width */
+    height: 18px; /* Slider handle height */
     cursor: pointer; /* Cursor on hover */
     border: 1.5px solid gray;
     border-radius: 10px;

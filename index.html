@@ -15,7 +15,7 @@
   <link href="https://api.mapbox.com/mapbox-gl-js/v3.5.1/mapbox-gl.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 
   <link href="./output.css" rel="stylesheet">
 
@@ -41,24 +41,33 @@
                 <div class="flex flex-col gap-y-2">
                     <div class="text-base">Min Parcel Opacity</div>
                     <div class="slidecontainer flex flex-col gap-y-1">
-                        <div class="h-[8px] rounded-lg w-[100%] bg-gradient-to-r from-white to-gray-500" id="opacity-scale-cont"></div>
+                        <div class="h-[8px] rounded-lg w-[100%] bg-gradient-to-r from-white to-green" id="opacity-scale-cont"></div>
                         <input type="range" min="0" max="10" value="5" class="slider" id="fill-slider">
                         <div class="flex justify-between w-[100%] tick-container"></div>
                         <div class="flex justify-between w-[100%]">
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">10</div>
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">100</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">0</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">20</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">40</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">60</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">80</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">100</div>
                         </div>
                     </div>
            
                 </div>
                 <div class="flex flex-col gap-y-2">
                     <div class="text-base">Map Pin Size</div>
-                    <div class="slidecontainer">
-                        <input type="range" min="1" max="5" value="5" class="slider" id="size-slider">
+                    <div class="slidecontainer flex flex-col gap-y-1">
+                        <div class="flex justify-between" id="pin-size-container"></div>
+                        <input type="range" min="0" max="5" value="5" class="slider" id="size-slider">
                         <div class="flex justify-between w-[100%] tick-container"></div>
                         <div class="flex justify-between w-[100%]">
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">16px</div>
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">48px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">16px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">24px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">32px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">40px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">48px</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">56px</div>
                         </div>
                     </div>
                     <div id="fill-slider-val"></div>
@@ -67,14 +76,14 @@
                     <div class="text-base">Map Pin Density</div>
                     <div class="slidecontainer flex flex-col gap-y-1">
 
-                        <div class="h-[24px] w-[100%] flex justify-between items-end" id="density-chart-cont"></div>
+                        <div class="h-[24px] w-[100%] flex justify-between items-end px-0.5" id="density-chart-cont"></div>
 
-                        <input type="range" min="1" max="17" value="17" class="slider" id="size-slider">
+                        <input type="range" min="0" max="17" value="10" class="slider" id="density-slider">
                         <div class="flex justify-between w-[100%] tick-container"></div>
                         
                         <div class="flex justify-between w-[100%]">
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">Min</div>
-                            <div class="h-[8px] w-[20px] text-sm flex justify-center text-gray-400">Max</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">Min</div>
+                            <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">Max</div>
                         </div>
                     </div>
                     <div id="fill-slider-val"></div>
