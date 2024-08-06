@@ -46,10 +46,10 @@ sliders.forEach((slider, i) => {
 
 controlBtn.addEventListener("click", function () {
     if (panelState == false) {
-        controlPanel.style.top = "50vh";
+        controlPanel.style.top = "40vh";
         panelState = true;
     } else {
-        controlPanel.style.top = "80vh";
+        controlPanel.style.top = "85vh";
         panelState = false;
     }
 });

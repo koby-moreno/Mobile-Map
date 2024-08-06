@@ -29,19 +29,19 @@
       bottom: 0;
     }
   </style>
-  <script type="module" crossorigin src="/Mobile-Map/assets/index-603374de.js"></script>
-  <link rel="stylesheet" href="/Mobile-Map/assets/index-6fdde0e3.css">
+  <script type="module" crossorigin src="/Mobile-Map/assets/index-4deef160.js"></script>
+  <link rel="stylesheet" href="/Mobile-Map/assets/index-c6e88ff9.css">
 </head>
 <body class="z-auto">
     <div id="map"></div>
     <div class="flex w-[100vw] h-[100vh] z-10 relative pointer-events-none">
-        <div class="rounded-3xl sm:rounded-none absolute sm:relative top-[80vh] sm:top-auto w-[100vw] sm:w-[50vw] bg-white h-[70vh] sm:h-[100vh] pointer-events-auto flex py-[60px] sm:py-[0px] justify-center sm:items-center" id="control-panel">
+        <div class="rounded-3xl sm:rounded-none absolute sm:relative top-[85vh] sm:top-auto w-[100vw] sm:w-[50vw] border border-gray-200 bg-white h-[70vh] sm:h-[100vh] pointer-events-auto flex py-[60px] sm:py-[0px] justify-center sm:items-center" id="control-panel">
             <div class="flex sm:hidden absolute top-[-30px] w-[60px] shadow-md h-[60px] rounded-[30px] bg-white justify-center items-center border-[1.5px] border-solid border-[gray]" id="control-panel-btn">
                 <span class="material-symbols-outlined">keyboard_arrow_up</span>
             </div>
             <div class="flex flex-col gap-y-8 w-[300px]" id="controls">
-                <div class="flex flex-col gap-y-2">
-                    <div class="text-base">Min Parcel Opacity</div>
+                <div class="flex flex-col gap-y-4">
+                    <div class="text-base font-medium">Parcel Opacity</div>
                     <div class="slidecontainer flex flex-col gap-y-1">
                         <div class="h-[8px] rounded-lg w-[100%] bg-gradient-to-r from-white to-green" id="opacity-scale-cont"></div>
                         <input type="range" min="0" max="10" value="5" class="slider" id="fill-slider">
@@ -57,8 +57,8 @@
                     </div>
            
                 </div>
-                <div class="flex flex-col gap-y-2">
-                    <div class="text-base">Map Pin Size</div>
+                <div class="flex flex-col gap-y-4">
+                    <div class="text-base font-medium">Pin Size</div>
                     <div class="slidecontainer flex flex-col gap-y-1">
                         <div class="flex justify-between" id="pin-size-container"></div>
                         <input type="range" min="0" max="5" value="5" class="slider" id="size-slider">
@@ -72,10 +72,9 @@
                             <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">56px</div>
                         </div>
                     </div>
-                    <div id="fill-slider-val"></div>
                 </div>
-                <div class="flex flex-col gap-y-2">
-                    <div class="text-base">Map Pin Density</div>
+                <div class="flex flex-col gap-y-4">
+                    <div class="text-base font-medium">Pin Density</div>
                     <div class="slidecontainer flex flex-col gap-y-1">
 
                         <div class="h-[24px] w-[100%] flex justify-between items-end px-0.5" id="density-chart-cont"></div>
@@ -88,7 +87,6 @@
                             <div class="h-[8px] w-[18px] text-xs flex justify-center text-gray-400">Max</div>
                         </div>
                     </div>
-                    <div id="fill-slider-val"></div>
                 </div>
             </div>
 
