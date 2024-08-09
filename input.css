@@ -11,7 +11,7 @@ canvas {
     -webkit-appearance: none;  /* Override default CSS styles */
     appearance: none;
     width: 100%; /* Full-width */
-    height: 16px; /* Specified height */
+    height: 12px; /* Specified height */
     outline: none; /* Remove outline */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
     transition: opacity .2s;
@@ -41,3 +41,48 @@ canvas {
     background: #04AA6D; /* Green background */
     cursor: pointer; /* Cursor on hover */
   }
+
+  .slider-container {
+    position: relative;
+    width: 300px;
+    height: 12px;
+}
+
+.double-slider {
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 12px;
+    background: transparent;
+}
+
+.double-slider::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 18px;
+    height: 18px;
+    -webkit-appearance: none;
+    background: white;
+    border: 1.5px solid gray;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.fill-slider-track {
+    @apply bg-gray-200;
+    position: absolute;
+    height: 12px;
+    width: 100%;
+    border-radius: 8px;
+}
+
+.density-slider-track {
+  @apply bg-gray-200;
+  position: absolute;
+  height: 12px;
+  width: 100%;
+  border-radius: 8px;
+}
+/* .slider-range {
+    background: gray;
+} */
